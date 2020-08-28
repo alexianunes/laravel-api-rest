@@ -15,5 +15,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('medico', 'MedicoController');
+Route::resource('medico', 'MedicoController', ['except' => ['store', 'update', 'destroy']]);
 

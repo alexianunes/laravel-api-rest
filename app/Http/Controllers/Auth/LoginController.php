@@ -63,5 +63,8 @@ class LoginController extends Controller
 
         $response = json_decode(Route::dispatch($request)->getContent());
 
+        if($response['success']) {
+            return redirect()->route('home');
+        }
     }
 }

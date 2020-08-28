@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    <form>
+                    <form action="{{route('medicos.store')}}" method="POST">
+                        {{ csrf_field() }}
                         <div class="form-group">
                           <label for="nome">Nome</label>
                           <input id="nome" name="nome" type="text" class="form-control" placeholder="Informe o Nome">
@@ -28,8 +29,12 @@
                             <input id="telefone" name="telefone" type="text" class="form-control" placeholder="Informe o Telefone">
                         </div>
                         <div class="form-group form-check">
-                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                          <label class="form-check-label" for="exampleCheck1">Especialidades</label>
+                            <label for="especialidades">Especialidades:</label><br>
+                            @foreach ($especialidadesArray as $especialidade)
+                                <input type="checkbox" class="form-check-input" value="{{$especialidade->id}}" name="especialidades[]">
+                                <label class="form-check-label">{{$especialidade->nome}}</label> <br>
+                            @endforeach
+                          
                         </div>
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>

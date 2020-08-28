@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Medico;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $client = new Client([
+        //     'base_uri' => 'http://127.0.0.1:8000',
+        //     'connect_timeout' => false,
+        // ]);
+        // $response = $client->request('GET', '/api/medicos');
+
+
+        $request = Request::create('/api/medicos', 'GET');
+        $medicos = json_decode(Route::dispatch($request)->getContent());
+
+        return view('home', ['medicos' => $medicos]);
     }
 }

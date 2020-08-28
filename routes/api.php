@@ -17,6 +17,10 @@ Route::post('login', 'API\UserController@login')->name('auth.login');
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', 'API\UserController@details');
-    Route::resource('medico', 'API\MedicoController');
+
+
+    Route::apiResource('medicos', 'API\MedicoController');
+    Route::get('medicos/search', 'API\MedicoController@search')->name('medicos.search');
+    
 
 });
